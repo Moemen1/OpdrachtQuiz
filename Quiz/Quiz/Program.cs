@@ -1,33 +1,29 @@
 ﻿using System;
+using System.Transactions;
 
 namespace Quiz
 {
-
-    public class KeuzeVraag : Vraag
-    {
-
-    }
-
-    public class Vraag
-    {
-        public string tekst { get; set; }
-        public string antwoord { get; set; }
-
-        public bool CheckAntwoord(string correctAntwoord)
-        {
-            return correctAntwoord.Equals(antwoord);
-        }
-
-        public void Display()
-        {
-            Console.WriteLine(tekst);
-        }
-    }
-
     class Program
     {
         static void Main(string[] args)
         {
+
+            var v1 = new KeuzeVraag();
+            v1.tekst = "Hoe heet ik?";
+            v1.addKeuze("Moemen", true);
+            v1.addKeuze("Amro", false);
+            v1.CheckAntwoord("Moemen");
+
+            v1.Display();
+            Console.Write("Jouw antwoord: ");
+            string response = Console.ReadLine();
+
+            Console.WriteLine(v1.CheckAntwoord(response));
+        
+            Console.ReadKey();
+
+            
+
             Console.WriteLine("Hello World!");
         }
     }
